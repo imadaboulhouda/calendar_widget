@@ -23,3 +23,9 @@ function dayDiff(d1, d2)
   d2 = d2.getTime() / 86400000;
   return new Number(d2 - d1).toFixed(0);
 }
+
+function createHumainDate(today)
+{
+    var dayis = getDayName(today,"fr");
+    return "<div>"+dayis+" "+today.getDate()+" "+getDayName(today,'fr','month')+" "+today.getFullYear()+"</div>";
+}
