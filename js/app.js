@@ -1,19 +1,31 @@
 (function($){
-   
-
+    var nbr_clique = 0;
+    var nbr_clique_precedent = 0;
 function refreshByDate(date,period,add="",realtime=false)
 {
-    console.log(period);
+    console.log("Nbr Clique",nbr_clique);
+    
     var today =date;
     console.log('today is',today)
     if(period == "right")
     {
         var data = "";
         if(!realtime)
-        today = incDay(today,1);
+        {
+            today = incDay(today,1);
+            nbr_clique++;
+        }
+
+
+        if(nbr_clique >=2)
+        {
+            alert('Vous n\'avez pas l\'autorisation');
+            return;
+        }
+        console.log('Kameel')
         var dayis = getDayName(today,"fr");
         
-
+        nbr_clique_precedent = 0;
 
        data+="<div>"+dayis+" "+today.getDate()+" "+getDayName(today,'fr','month')+" "+today.getFullYear()+"</div>";
        lastDate = "";
@@ -41,6 +53,7 @@ function refreshByDate(date,period,add="",realtime=false)
             nDate.setDate(lastDate.getDate() - 4);
             
             $(".left_controls").attr('data-first',nDate.getFullYear()+"-"+nDate.getMonth()+"-"+nDate.getDate());
+            $(".left_controls").data('first',nDate.getFullYear()+"-"+nDate.getMonth()+"-"+nDate.getDate());
         }
         $(".right_controls").attr('data-last',lastDate);
     }  
@@ -48,28 +61,23 @@ function refreshByDate(date,period,add="",realtime=false)
     if(period == "left")
     {
         var data = "";
-      
-        /*if(today <= todayTime)
-        {
-            alert('Choose date in this day');
-            return;
-        }*/
-      
+      if(!today.getDate())
+      {
+        return;
+      }
+
+      nbr_clique_precedent++;
+      if(nbr_clique_precedent > 1)
+      {
+          alert("Vous n'avez pas l'autorisation");
+          return;
+      }
+        nbr_clique = 0;
+     
         var newDate = new Date();
         newDate.setDate(today.getDate() - 1);
         console.log("Today is ",newDate);
-        const diffTime = Math.abs(newDate - (new Date()));
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-
-        console.log(diffDays + " days");
-        if(diffDays >= 4)
-        {
-
-            alert('Merci de choisir date à partir aujourd\'hui');
-
-            return;
-        }
-
+        
 
 
 
