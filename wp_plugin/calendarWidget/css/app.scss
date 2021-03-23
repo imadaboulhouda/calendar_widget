@@ -1,0 +1,101 @@
+$nbrRow : 3;
+$bg: #aed002;
+*,*::before,*::after 
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.calendarWidget {
+    font-family: "Montserrat";
+    max-width:800px;
+    width: 100%;
+    margin-top:10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 24px;
+    padding-bottom: 16px;
+    background-color: #eeeeee;
+    
+    .left_controls,.right_controls 
+    {
+        width: 32px;
+    height: 32px;
+    text-align: center;
+    button{
+        background-color:transparent;
+        border:0;
+        cursor: pointer;
+    }
+    
+    }
+    &__items
+    {
+        justify-content: space-between;
+        flex:1;
+        
+padding: 0px 16px;
+display: flex;
+    div{
+        text-align: center;
+        
+        flex-grow: 0;
+max-width: 33.333333%;
+flex-basis: 33.333333%;
+    }
+    }
+    &__header{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        color: #fff;
+    padding: 16px 8px;
+    font-weight: 500;
+    text-transform: capitalize;
+    background-color: $bg;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+       
+}
+
+
+&__content {
+    padding: 8px 40px;
+}
+    
+}
+
+.contentShowItems {
+    display: flex;
+    .col3div{
+        flex-grow: 0;
+        max-width: 33.333333%;
+        flex-basis: 33.333333%;
+        .firstDiv{
+            padding: 4px; width: 100%;
+            .element{
+                padding: 4px;
+                width: 100%;
+                display: block;
+                padding: 12px 8px;
+                position: relative;
+                font-size: 16px;
+                background: #fff;
+                border-radius: 10px;
+                color: #000;
+                border: solid 1px #DBDFE8;
+                font-weight: 500;
+                text-align: center;
+                margin-bottom: 10px;
+                cursor: pointer;
+                transition: all ease-in-out .5s;
+             &.active 
+             {
+                 background-color: $bg;
+                 color:white;
+             }   
+            }
+        }
+    }
+}
