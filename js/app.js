@@ -9,7 +9,13 @@
         console.log('today is', today)
         if (period == "right") {
             var data = "";
-            if (!realtime) {
+            if(realtime)
+            {
+                $(".left_controls").css('visibility','hidden');
+
+            }else{
+
+                $(".left_controls").css('visibility','initial');
                 today = incDay(today, 1);
                 nbr_clique++;
             }
@@ -38,31 +44,41 @@
             }
             $(".calendarWidget__items").html(data);
             if (add) {
-                var nDate = new Date();
+                var nDate = new Date(lastDate);
                 nDate.setDate(lastDate.getDate() - 4);
 
-                $(".left_controls").attr('data-first', nDate.getFullYear() + "-" + nDate.getMonth() + "-" + nDate.getDate());
-                $(".left_controls").data('first', nDate.getFullYear() + "-" + nDate.getMonth() + "-" + nDate.getDate());
+                $(".left_controls").attr('data-first',nDate);
+                $(".left_controls").data('first', nDate);
             }
             $(".right_controls").attr('data-last', lastDate);
         }
 
         if (period == "left") {
-
+            //hena fén 3andi problem
+            
 
             var data = "";
             if (!today.getDate()) {
                 return;
             }
 
+
+
             nbr_clique_precedent++;
             if (nbr_clique_precedent > 1) {
                 alert("Vous n'avez pas l'autorisation");
                 return;
             }
+
+            if(nbr_clique_precedent == 1)
+            {
+                $(".left_controls").css('visibility','hidden');
+            }else{
+                $(".left_controls").css('visibility','initial');
+            }
             nbr_clique = 0;
 
-            var newDate = new Date();
+            var newDate = new Date(today);
             newDate.setDate(today.getDate() - 1);
             console.log("Today is ", newDate);
 
